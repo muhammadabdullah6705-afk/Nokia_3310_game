@@ -1,0 +1,6 @@
+# Build output
+/snake
+/snake.dSYM/
+
+# macOS
+.DS_Store
