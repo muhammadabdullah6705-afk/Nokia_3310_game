@@ -151,12 +151,14 @@ void printSnakeSegments(const int* x, const int* y, int index) {
     cout << "(" << x[index] << "," << y[index] << ") ";
 }
 
-// Recursively find maximum in a score history array
-int findMaxRecursive(const int* arr, int n) {
-    if (n == 1)
-        return arr[0];
-    int restMax = findMaxRecursive(arr, n - 1);
-    return (arr[n - 1] > restMax) ? arr[n - 1] : restMax;
+// Find the maximum in a score history array using iteration
+int findMaxIterative(const int* arr, int n) {
+    int maxValue = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > maxValue)
+            maxValue = arr[i];
+    }
+    return maxValue;
 }
 
 // -------------------- Pointer / array helpers --------------------
@@ -390,11 +392,11 @@ void showHighScore() {
     cout << "========== HIGH SCORE ==========\n\n";
     cout << "  Best score: " << high << "\n\n";
 
-    // Demo recursion with a tiny sample history array
+    // Demonstrate finding the maximum in a sample score history
     int sample[] = { high, high / 2, high / 3, 20, 10 };
     int n = 5;
-    cout << "  Sample score list max (recursion): "
-         << findMaxRecursive(sample, n) << "\n\n";
+    cout << "  Sample score list max (iteration): "
+         << findMaxIterative(sample, n) << "\n\n";
     cout << "  Press any key to return...\n";
     readKey();
 }
